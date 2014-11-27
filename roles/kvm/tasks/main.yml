@@ -1,0 +1,12 @@
+- name: kvm install
+  yum: name={{ item }} state=installed
+  with_items: kvm_install_list  
+
+- name: bridge network setting
+  template: src=ifcfg-br0 dest=/etc/sysconfig/network-scripts/ owner=root group=root mode=0644 
+
+- name: Global NIC edit
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ NIC }} state=present line='BRIDGE=br0'
+
+- name: reboot
+  shell: shutdown -r now

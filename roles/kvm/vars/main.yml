@@ -1,0 +1,5 @@
+kvm_install_list:
+  - qemu-kvm 
+  - libvirt 
+  - virt-install 
+  - bridge-utils
